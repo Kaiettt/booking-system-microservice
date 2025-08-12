@@ -2,6 +2,7 @@ package com.booking.userservice.config;
 
 import java.io.IOException;
 
+import com.booking.userservice.dto.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
@@ -31,7 +32,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint{
         this.delegate.commence(request, response, authException);
         response.setContentType("application/json;charset=UTF-8");
 
-        RestResponce<Object> res = new RestResponce<Object>();
+        ErrorResponse<Object> res = new ErrorResponse<Object>();
         res.setStatusCode(HttpStatus.UNAUTHORIZED.value());
         res.setError(authException.getCause().getMessage());
         res.setMessage("Token không hợp lệ (hết hạn, không đúng định dạng, hoặc không truyền JWT ở header)...");

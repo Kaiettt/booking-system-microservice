@@ -1,4 +1,3 @@
--- V1__create_users_table.sql
 CREATE TABLE users (
                        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
@@ -18,5 +17,6 @@ CREATE TABLE users (
                        phone_number VARCHAR(20) NOT NULL,
                        user_name VARCHAR(100) UNIQUE,
                        password VARCHAR(255),
-                       role VARCHAR(50)
+                       role VARCHAR(50),
+                       refresh_token TEXT
 );
