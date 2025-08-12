@@ -24,7 +24,7 @@ public class AuthService {
                 .build();
 
         String accessToken = SecurityUtil.createToken(username, user);
-        String refreshToken = SecurityUtil.createRefreshToken(username, userResponse);
+        String refreshToken = SecurityUtil.createRefreshToken(username,userResponse);
 
         user.setRefreshToken(refreshToken);
         this.userService.updateUser(user);
