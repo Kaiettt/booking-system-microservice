@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -33,10 +33,11 @@ jobs:
         run: mvn -B clean install
         working-directory: discovery
 
-      # Step 5: Build user-service
-      - name: Build user-service
-        run: mvn -B clean install
+      # Step 5: Build user-service with `test` profile
+      - name: Build user-service (test profile)
+        run: mvn -B clean install -Dspring.profiles.active=test
         working-directory: user-service
+        shell: bash  # Ensures correct handling of the property in Ubuntu
 
       # Step 6: Upload JARs
       - name: Upload JAR files

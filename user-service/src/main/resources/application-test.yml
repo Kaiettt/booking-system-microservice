@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:h2:mem:user_service;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  flyway:
+    enabled: false  # Disable Flyway for tests
+
+server:
+  port: 0  # Use random port
+
+security:
+  jwt:
+    base64-secret: dGVzdC1zZWNyZXQtZm9yLXVzZXItc2VydmljZS10ZXN0aW5nLWVudmlyb25tZW50
+    access-token-validity-in-seconds: 3600
+    refresh-token-validity-in-seconds: 86400
+
+eureka:
+  client:
+    enabled: false
+    register-with-eureka: false
+    fetch-registry: false

@@ -37,7 +37,4 @@ public class AuthService {
                 .build();
     }
 
-    public void testCiPipeline(){
-
-    }
 }
