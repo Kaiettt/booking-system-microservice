@@ -5,7 +5,6 @@ import com.booking.userservice.entity.User;
 import com.booking.userservice.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseCookie;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
@@ -36,5 +35,9 @@ public class AuthService {
                 .accessToken(accessToken)
                 .springCookie(springCookie)
                 .build();
+    }
+
+    public void testCiPipeline(){
+
     }
 }

@@ -5,7 +5,6 @@ import com.booking.userservice.dto.response.UserResponse;
 import com.booking.userservice.entity.User;
 import com.booking.userservice.mapper.UserMapper;
 import com.booking.userservice.repository.UserRepository;
-import com.booking.userservice.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
