@@ -33,4 +33,5 @@ public class UserService {
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         return this.userMapper.toResponse(this.userRepository.save(user));
     }
+
 }
