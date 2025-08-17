@@ -20,16 +20,16 @@ spring:
       enabled: true
       path: /h2-console
   flyway:
-    enabled: false  # Disable Flyway for tests
+    enabled: false
 
 server:
-  port: 0  # Use random port
+  port: 0
 
 security:
   jwt:
-    base64-secret: dGVzdC1zZWNyZXQtZm9yLXVzZXItc2VydmljZS10ZXN0aW5nLWVudmlyb25tZW50
-    access-token-validity-in-seconds: 3600
-    refresh-token-validity-in-seconds: 86400
+    base64-secret: TRrx3ZoD9xgevlM73MU8/ay9VO+8RJ7NjvFh5Ab0xoTsKzuPYwCOKDZugGYsVxroYRfP94DH6jBxBhFyBPaQQQ==
+    access-token-validity-in-seconds: 300000
+    refresh-token-validity-in-seconds: 300000
 
 eureka:
   client:
