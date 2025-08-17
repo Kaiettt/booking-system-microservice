@@ -23,9 +23,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecurityUtil {
 
-    private static long jwtAccessTokenExpiration;
-    private static long jwtRefreshTokenExpiration;
-    private static JwtEncoder jwtEncoder;
+    public static long jwtAccessTokenExpiration;
+    public static long jwtRefreshTokenExpiration;
+    public static JwtEncoder jwtEncoder;
 
     public static final MacAlgorithm JWT_ALGORITHM = MacAlgorithm.HS512;
 

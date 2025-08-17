@@ -24,7 +24,6 @@ public class UserService {
         }
         return user;
     }
-    @Async
     public void updateUser(User user){
         this.userRepository.save(user);
     }
@@ -34,4 +33,7 @@ public class UserService {
         return this.userMapper.toResponse(this.userRepository.save(user));
     }
 
+    public User getUserByRefreshToken(String refreshToken) {
+        return this.userRepository.findByRefreshToken(refreshToken);
+    }
 }
