@@ -9,20 +9,20 @@ spring:
             - id: user-service
               uri: lb://user-service
               predicates:
-                - Path=/users
                 - Path=/users/**
+              filters: [ ]
+
             - id: auth-service-login
               uri: lb://user-service
               predicates:
                 - Path=/auth/login
-              filters:
-                - StripPrefix=1
+              filters: [ ]
+
             - id: auth-service-refresh
               uri: lb://user-service
               predicates:
                 - Path=/auth/refresh
-              filters:
-                - StripPrefix=1
+              filters: [ ]
 
 
 

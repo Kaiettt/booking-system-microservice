@@ -37,24 +37,14 @@ eureka:
 
 logging:
   level:
-    # Your package
-    com.booking.userservice.config: DEBUG
-    com.booking.userservice.config.HeaderBasedAuthenticationFilter: DEBUG
-    com.booking.userservice.config.SecurityConfiguration: DEBUG
-
-    # Spring Security
+    root: INFO                  # default level
+    com.booking.userservice: DEBUG   # your packages
     org.springframework.security: DEBUG
-
-    # Servlet filter / Dispatcher
-    org.springframework.web.filter: DEBUG
-    org.springframework.web.servlet: DEBUG
-
-    # HTTP requests / headers (optional)
     org.springframework.web: DEBUG
+    org.springframework.security.web: DEBUG
+    org.springframework.security.authentication: DEBUG
+    reactor.netty: DEBUG         # if using WebFlux / Netty
 
-    # Optional: underlying logging libraries
-    org.hibernate.SQL: DEBUG        # if you want DB queries logged
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # bind parameters
 
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
