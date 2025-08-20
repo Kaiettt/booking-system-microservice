@@ -27,7 +27,7 @@ public class SecurityUtil {
     public static long jwtRefreshTokenExpiration;
     public static JwtEncoder jwtEncoder;
 
-    public static final MacAlgorithm JWT_ALGORITHM = MacAlgorithm.HS512;
+    public static final MacAlgorithm JWT_ALGORITHM = MacAlgorithm.HS256;
 
     @Value("${security.jwt.access-token-validity-in-seconds}")
     private long accessTokenValidityConfig;
@@ -52,15 +52,16 @@ public class SecurityUtil {
         Instant now = Instant.now();
         Instant validity = now.plus(jwtAccessTokenExpiration, ChronoUnit.SECONDS);
 
-        List<String> authorities = new ArrayList<>();
-        authorities.add(user.getRole().name());
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuedAt(now)
                 .expiresAt(validity)
-                .subject(userName)
-                .claim("authorities", authorities)
+                .subject(String.valueOf(user.getId()))  // subject = userId (primary identifier)
+                .claim("username", user.getUsername())  // convenience claim
+                .claim("role", user.getRole().name())            // roles/authorities
                 .build();
+
+
 
         JwsHeader jwsHeader = JwsHeader.with(JWT_ALGORITHM).build();
         return jwtEncoder.encode(JwtEncoderParameters.from(jwsHeader, claims)).getTokenValue();
