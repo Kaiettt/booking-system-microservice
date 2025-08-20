@@ -34,3 +34,27 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    # Your package
+    com.booking.userservice.config: DEBUG
+    com.booking.userservice.config.HeaderBasedAuthenticationFilter: DEBUG
+    com.booking.userservice.config.SecurityConfiguration: DEBUG
+
+    # Spring Security
+    org.springframework.security: DEBUG
+
+    # Servlet filter / Dispatcher
+    org.springframework.web.filter: DEBUG
+    org.springframework.web.servlet: DEBUG
+
+    # HTTP requests / headers (optional)
+    org.springframework.web: DEBUG
+
+    # Optional: underlying logging libraries
+    org.hibernate.SQL: DEBUG        # if you want DB queries logged
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # bind parameters
+
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"

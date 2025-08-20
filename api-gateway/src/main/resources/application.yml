@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/users
+                - Path=/users/**
+            - id: auth-service-login
+              uri: lb://user-service
+              predicates:
+                - Path=/auth/login
+              filters:
+                - StripPrefix=1
+            - id: auth-service-refresh
+              uri: lb://user-service
+              predicates:
+                - Path=/auth/refresh
+              filters:
+                - StripPrefix=1
+
+
+
+
+security:
+  jwt:
+    base64-secret: TRrx3ZoD9xgevlM73MU8/ay9VO+8RJ7NjvFh5Ab0xoTsKzuPYwCOKDZugGYsVxroYRfP94DH6jBxBhFyBPaQQQ==
+
+logging:
+  level:
+    root: INFO
+    com.booking.apigateway: TRACE            # Your custom classes (AuthenticationHeaderFilter & SecurityConfig)
+    org.springframework.security: TRACE       # Spring Security core
+    org.springframework.security.web.server: TRACE  # WebFlux Security filter chains
+    org.springframework.security.oauth2: TRACE        # OAuth2 / JWT processing
+    org.springframework.security.oauth2.server.resource: TRACE  # JWT decoder, claims, authentication
+    org.springframework.cloud.gateway: TRACE   # Gateway routing, global filters, pre/post filters
+    org.springframework.cloud.gateway.filter: TRACE  # Detailed filter execution
+    reactor.netty.http.server: DEBUG          # Low-level HTTP requests/responses
+
+
+server:
+  port: 8080
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

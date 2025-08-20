@@ -1,5 +1,6 @@
 package com.booking.userservice.service;
 
+import com.booking.userservice.common.UserContext;
 import com.booking.userservice.dto.request.UserCreateRequest;
 import com.booking.userservice.dto.request.UserUpdateRequest;
 import com.booking.userservice.dto.response.UserResponse;
@@ -25,6 +26,7 @@ public class UserService {
     private final UserMapper  userMapper;
     private final UserRepository  userRepository;
     private final PasswordEncoder  passwordEncoder;
+    private final UserContextService userContextService;
     public User getUserByUserName(String userName) {
         User user = this.userRepository.findByUsername(userName);
         if(user == null){
@@ -60,6 +62,8 @@ public class UserService {
     }
 
     public List<UserResponse> getAllUsers() {
+        UserContext userContext = this.userContextService.getCurrentUser();
+        log.info(userContext.getUsername() + " is viewing all  users");
         List<User> users = this.userRepository.findAll();
         return this.userMapper.toResponseList(users);
     }
