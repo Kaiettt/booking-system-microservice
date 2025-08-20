@@ -33,13 +33,18 @@ jobs:
         run: mvn -B clean install
         working-directory: discovery
 
-      # Step 5: Build user-service with `test` profile
+      # Step 5: Build user-service (test profile)
       - name: Build user-service (test profile)
         run: mvn -B clean install -Dspring.profiles.active=test
         working-directory: user-service
-        shell: bash  # Ensures correct handling of the property in Ubuntu
+        shell: bash
 
-      # Step 6: Upload JARs
+      # Step 6: Build API gateway
+      - name: Build Gateway
+        run: mvn -B clean install
+        working-directory: api-gateway
+
+      # Step 7: Upload JARs
       - name: Upload JAR files
         uses: actions/upload-artifact@v4
         with:
@@ -48,5 +53,4 @@ jobs:
             config-server/target/*.jar
             discovery/target/*.jar
             user-service/target/*.jar
-            !**/*-sources.jar
-            !**/*-javadoc.jar
+            api-gateway/target/*.jar
