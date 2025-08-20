@@ -41,11 +41,12 @@ public class AuthenticationHeaderFilter implements GlobalFilter, Ordered {
                     // Forward headers to downstream services
                     ServerWebExchange modifiedExchange = exchange.mutate()
                             .request(r -> r.headers(headers -> {
-                                headers.add("X-UserId", userId);
-                                headers.add("X-Username", username);
-                                headers.add("X-Role", role);
+                                headers.add("X-User-Id", userId);
+                                headers.add("X-User-Name", username);
+                                headers.add("X-User-Role", role);
                             }))
                             .build();
+
 
                     return chain.filter(modifiedExchange);
                 }
